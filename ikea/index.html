@@ -8,7 +8,6 @@
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f4f5f7; margin: 0; padding: 20px; color: #333; }
     .card { background: white; border-radius: 16px; padding: 24px; max-width: 400px; margin: 20px auto; box-shadow: 0 4px 16px rgba(0,0,0,0.1); text-align: center; border-top: 6px solid #0051ba; }
     
-    /* Logo IKEA */
     .brand-logo { background: #0051ba; color: #ffda1a; display: inline-block; font-size: 1.6em; font-weight: 900; padding: 4px 16px; border-radius: 4px; letter-spacing: 2px; margin-bottom: 20px; }
     
     .avatar-container { width: 70px; height: 70px; margin: 0 auto 12px auto; background: #f0f4f9; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
@@ -16,22 +15,18 @@
     
     h2 { margin: 5px 0 15px 0; color: #111; font-size: 1.3em; }
     
-    /* Menu a tendina Reparti */
     .select-group { margin-bottom: 20px; text-align: left; }
     .select-group label { display: block; font-size: 0.85em; font-weight: bold; color: #555; margin-bottom: 6px; }
     select { width: 100%; padding: 12px; border: 1px solid #d0e0f5; border-radius: 10px; background: #f0f4f9; font-size: 0.95em; color: #0051ba; font-weight: 600; outline: none; }
     
-    /* Stelle Gialle IKEA */
     .stars { display: flex; justify-content: center; gap: 8px; font-size: 36px; cursor: pointer; margin-bottom: 20px; }
     .star { color: #e0e0e0; transition: color 0.2s; }
     .star.active { color: #ffda1a; text-shadow: 0 0 2px #c9a400; }
     
-    /* Tag */
     .tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 24px; }
     .tag { background: #f0f4f9; border: 1px solid #d0e0f5; color: #0051ba; padding: 10px 16px; border-radius: 20px; font-size: 0.85em; cursor: pointer; user-select: none; font-weight: 600; }
     .tag.selected { background: #0051ba; color: #ffda1a; border-color: #0051ba; }
     
-    /* Pulsante */
     button { background: #0051ba; color: #ffda1a; border: none; padding: 14px 28px; border-radius: 10px; font-size: 1em; font-weight: bold; width: 100%; cursor: pointer; transition: background 0.2s; }
     button:active { background: #003b87; }
     
@@ -41,7 +36,6 @@
 <body>
 
 <div class="card">
-  <!-- Brand IKEA -->
   <div class="brand-logo">IKEA</div>
 
   <div class="avatar-container">
@@ -52,7 +46,6 @@
 
   <h2>Valuta la tua esperienza</h2>
 
-  <!-- Selezione Reparto -->
   <div class="select-group">
     <label for="department">Seleziona Reparto:</label>
     <select id="department">
@@ -65,7 +58,6 @@
     </select>
   </div>
 
-  <!-- Stelle -->
   <div class="stars" id="starContainer">
     <span class="star" data-value="1">★</span>
     <span class="star" data-value="2">★</span>
@@ -74,7 +66,6 @@
     <span class="star" data-value="5">★</span>
   </div>
 
-  <!-- Tag richiesti -->
   <div class="tags">
     <div class="tag" onclick="toggleTag(this)">Gentilezza</div>
     <div class="tag" onclick="toggleTag(this)">Velocità</div>
