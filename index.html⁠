@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valuta il Servizio</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f4f5f7; margin: 0; padding: 20px; color: #333; }
+    .card { background: white; border-radius: 16px; padding: 24px; max-width: 400px; margin: 40px auto 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: center; }
+    .avatar-icon { width: 80px; height: 80px; margin: 0 auto 12px auto; fill: #007aff; }
+    h2 { margin: 5px 0; color: #111; font-size: 1.4em; }
+    p.dept { color: #666; font-size: 0.9em; margin-bottom: 24px; }
+    .stars { display: flex; justify-content: center; gap: 8px; font-size: 36px; cursor: pointer; margin-bottom: 20px; }
+    .star { color: #ddd; transition: color 0.2s; }
+    .star.active { color: #ffb400; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 24px; }
+    .tag { background: #f0f0f0; border: 1px solid #ddd; padding: 8px 14px; border-radius: 20px; font-size: 0.85em; cursor: pointer; user-select: none; }
+    .tag.selected { background: #007aff; color: white; border-color: #007aff; }
+    button { background: #007aff; color: white; border: none; padding: 14px 28px; border-radius: 10px; font-size: 1em; font-weight: bold; width: 100%; cursor: pointer; }
+    .success { display: none; color: #2e7d32; font-weight: bold; margin-top: 15px; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <!-- Avatar Icona Vettoriale -->
+  <svg class="avatar-icon" viewBox="0 0 24 24">
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+  </svg>
+
+  <h2 id="empName">Marco Rossi</h2>
+  <p class="dept" id="empDept">Reparto Arredamento - Ancona</p>
+
+  <!-- Valutazione Stelle -->
+  <div class="stars" id="starContainer">
+    <span class="star" data-value="1">★</span>
+    <span class="star" data-value="2">★</span>
+    <span class="star" data-value="3">★</span>
+    <span class="star" data-value="4">★</span>
+    <span class="star" data-value="5">★</span>
+  </div>
+
+  <!-- Tag Rapidi -->
+  <div class="tags">
+    <div class="tag" onclick="toggleTag(this)">Gentilezza</div>
+    <div class="tag" onclick="toggleTag(this)">Competenza</div>
+    <div class="tag" onclick="toggleTag(this)">Velocità</div>
+    <div class="tag" onclick="toggleTag(this)">Pazienza</div>
+  </div>
+
+  <button onclick="submitReview()">Invia Valutazione</button>
+  <div class="success" id="successMsg">Grazie per il tuo feedback!</div>
+</div>
+
+<script>
+  let selectedRating = 0;
+
+  document.querySelectorAll('.star').forEach(star => {
+    star.addEventListener('click', () => {
+      selectedRating = star.dataset.value;
+      document.querySelectorAll('.star').forEach(s => {
+        s.classList.toggle('active', s.dataset.value <= selectedRating);
+      });
+    });
+  });
+
+  function toggleTag(element) {
+    element.classList.toggle('selected');
+  }
+
+  function submitReview() {
+    if(selectedRating === 0) {
+      alert("Seleziona almeno una stella!");
+      return;
+    }
+    document.getElementById('successMsg').style.display = 'block';
+    setTimeout(() => {
+      document.getElementById('successMsg').style.display = 'none';
+    }, 3000);
+  }
+</script>
+
+</body>
+</html>
