@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valuta il Servizio - IKEA</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f4f5f7; margin: 0; padding: 20px; color: #333; }
+    .card { background: white; border-radius: 16px; padding: 24px; max-width: 400px; margin: 20px auto; box-shadow: 0 4px 16px rgba(0,0,0,0.1); text-align: center; border-top: 6px solid #0051ba; }
+    
+    .brand-logo { background: #0051ba; color: #ffda1a; display: inline-block; font-size: 1.6em; font-weight: 900; padding: 4px 16px; border-radius: 4px; letter-spacing: 2px; margin-bottom: 20px; }
+    
+    .avatar-container { width: 70px; height: 70px; margin: 0 auto 12px auto; background: #f0f4f9; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .avatar-icon { width: 45px; height: 45px; fill: #0051ba; }
+    
+    h2 { margin: 5px 0 15px 0; color: #111; font-size: 1.3em; }
+    
+    .select-group { margin-bottom: 20px; text-align: left; }
+    .select-group label { display: block; font-size: 0.85em; font-weight: bold; color: #555; margin-bottom: 6px; }
+    select { width: 100%; padding: 12px; border: 1px solid #d0e0f5; border-radius: 10px; background: #f0f4f9; font-size: 0.95em; color: #0051ba; font-weight: 600; outline: none; }
+    
+    .stars { display: flex; justify-content: center; gap: 8px; font-size: 36px; cursor: pointer; margin-bottom: 20px; }
+    .star { color: #e0e0e0; transition: color 0.2s; }
+    .star.active { color: #ffda1a; text-shadow: 0 0 2px #c9a400; }
+    
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 24px; }
+    .tag { background: #f0f4f9; border: 1px solid #d0e0f5; color: #0051ba; padding: 10px 16px; border-radius: 20px; font-size: 0.85em; cursor: pointer; user-select: none; font-weight: 600; }
+    .tag.selected { background: #0051ba; color: #ffda1a; border-color: #0051ba; }
+    
+    button { background: #0051ba; color: #ffda1a; border: none; padding: 14px 28px; border-radius: 10px; font-size: 1em; font-weight: bold; width: 100%; cursor: pointer; transition: background 0.2s; }
+    button:active { background: #003b87; }
+    
+    .success { display: none; color: #2e7d32; font-weight: bold; margin-top: 15px; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="brand-logo">IKEA</div>
+
+  <div class="avatar-container">
+    <svg class="avatar-icon" viewBox="0 0 24 24">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+    </svg>
+  </div>
+
+  <h2>Valuta la tua esperienza</h2>
+
+  <div class="select-group">
+    <label for="department">Seleziona Reparto:</label>
+    <select id="department">
+      <option value="">-- Scegli un reparto --</option>
+      <option value="arredamento">Reparto Arredamento</option>
+      <option value="cassa">Casse & Servizio Clienti</option>
+      <option value="ristorante">Ristorante & Bottega Svedese</option>
+      <option value="ritiro">Ritiro Merci & Magazzino</option>
+      <option value="progettazione">Area Progettazione</option>
+    </select>
+  </div>
+
+  <div class="stars" id="starContainer">
+    <span class="star" data-value="1">★</span>
+    <span class="star" data-value="2">★</span>
+    <span class="star" data-value="3">★</span>
+    <span class="star" data-value="4">★</span>
+    <span class="star" data-value="5">★</span>
+  </div>
+
+  <div class="tags">
+    <div class="tag" onclick="toggleTag(this)">Gentilezza</div>
+    <div class="tag" onclick="toggleTag(this)">Velocità</div>
+    <div class="tag" onclick="toggleTag(this)">Competenza</div>
+  </div>
+
+  <button onclick="submitReview()">Invia Valutazione</button>
+  <div class="success" id="successMsg">Tack! Grazie per il tuo feedback!</div>
+</div>
+
+<script>
+  let selectedRating = 0;
+
+  document.querySelectorAll('.star').forEach(star => {
+    star.addEventListener('click', () => {
+      selectedRating = star.dataset.value;
+      document.querySelectorAll('.star').forEach(s => {
+        s.classList.toggle('active', s.dataset.value <= selectedRating);
+      });
+    });
+  });
+
+  function toggleTag(element) {
+    element.classList.toggle('selected');
+  }
+
+  function submitReview() {
+    const dept = document.getElementById('department').value;
+    
+    if(!dept) {
+      alert("Seleziona prima un reparto!");
+      return;
+    }
+    if(selectedRating === 0) {
+      alert("Seleziona almeno una stella!");
+      return;
+    }
+    
+    document.getElementById('successMsg').style.display = 'block';
+    setTimeout(() => {
+      document.getElementById('successMsg').style.display = 'none';
+    }, 3000);
+  }
+</script>
+
+</body>
+</html>
